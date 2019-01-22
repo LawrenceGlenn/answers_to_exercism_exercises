@@ -1,0 +1,4 @@
+{
+  "rna_transcription_test.py::RNATranscriptionTests::test_transcribes_all_occurrences": true, 
+  "rna_transcription_test.py::RNATranscriptionTests::test_transcribes_cytosine_to_guanine": true
+}

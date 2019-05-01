@@ -3,15 +3,10 @@ class HighScores(object):
         self.scores = scores
 
     def latest(self):
-        tempScores = self.scores[:]
-        return tempScores.pop()
+        return self.scores[-1]
         
     def personal_best(self):
-        tempScores = self.scores[:]
-        tempScores.sort()
-        return tempScores.pop()
+        return sorted(self.scores)[-1]
         
     def personal_top_three(self):
-        tempScores = self.scores[:]
-        tempScores.sort(reverse = True)
-        return tempScores[0:3]
+        return sorted(self.scores, reverse=True)[:3]

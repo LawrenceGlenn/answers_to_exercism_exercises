@@ -1,36 +1,20 @@
 class SpaceAge(object):
-    Earth_Yr = 31557600.0
-    Mercury_Yr = 0.2408467 * Earth_Yr
-    Venus_Yr = 0.61519726 * Earth_Yr
-    Mars_Yr = 1.8808158 * Earth_Yr
-    Jupiter_Yr = 11.862615 * Earth_Yr
-    Saturn_Yr = 29.447498 * Earth_Yr
-    Uranus_Yr = 84.016846 * Earth_Yr
-    Neptune_Yr = 164.79132 * Earth_Yr
 
+    Planet_Years = [(key, value * 31557600.0) for key, value in (
+        ('earth', 1.0),
+        ('mercury', 0.2408467),
+        ('venus', 0.61519726),
+        ('mars', 1.8808158),
+        ('jupiter', 11.862615),
+        ('saturn', 29.447498),
+        ('uranus', 84.016846),
+        ('neptune', 164.79132)
+    )]
+    
     def __init__(self, seconds):
         self.seconds = seconds
+        for planet_name, year in self.Planet_Years:
+            setattr(self, 'on_' + planet_name, self._years_on_planet(year))
 
-    def on_earth(self):
-        return round(self.seconds/self.Earth_Yr, 2)
-
-    def on_mercury(self):
-        return round(self.seconds/self.Mercury_Yr, 2)
-
-    def on_venus(self):
-        return round(self.seconds/self.Venus_Yr, 2)
-
-    def on_mars(self):
-        return round(self.seconds/self.Mars_Yr, 2)
-
-    def on_jupiter(self):
-        return round(self.seconds/self.Jupiter_Yr, 2)
-
-    def on_saturn(self):
-        return round(self.seconds/self.Saturn_Yr, 2)
-
-    def on_uranus(self):
-        return round(self.seconds/self.Uranus_Yr, 2)
-
-    def on_neptune(self):
-        return round(self.seconds/self.Neptune_Yr, 2)
+    def _years_on_planet(self, value):
+        return lambda value = value: round(self.seconds/value, 2)
